@@ -1,0 +1,12 @@
+
+
+1. what is != and where should you use it?
+A. != is a "not equal to" operator, and is used to compare two values, and is evaluated as true if both values
+are not equal.
+
+2. 
+A.
+
+3. put
+A.  ! after something, like words.uniq!, will sometimes indicate a method which will mutate it's caller.
+

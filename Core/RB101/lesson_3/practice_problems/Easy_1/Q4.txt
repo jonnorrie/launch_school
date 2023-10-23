@@ -1,0 +1,9 @@
+Question 4
+Array class has several methods for removing items from the array. Two of them have very similar names. Let's see how they differ:
+
+numbers = [1, 2, 3, 4, 5]
+
+What do the following method calls do (assume we reset numbers to the original array between method calls)?
+
+numbers.delete_at(1) : This method will delete objects from an array at a specified index. ie, number = [1,3,4,5]
+numbers.delete(1) : This method will delete objects from an array with a specified object name. ie, number = [2,3,4,5]
