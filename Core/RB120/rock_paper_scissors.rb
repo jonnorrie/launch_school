@@ -79,6 +79,9 @@ end
 # Game Orchestration Engine
 class RPSGame
   attr_accessor :human, :computer
+  @@player_score = 0
+  @@computer_score = 0
+
 
   def initialize
     @human = Human.new
@@ -86,7 +89,8 @@ class RPSGame
   end
 
   def display_welcome_message
-    puts "Welcome to Rock, Paper, Scissors!"
+    puts "Welcome to 'Rock, Paper, Scissors', #{human.name}!"
+    puts "You're playing against #{computer.name}"
   end
 
   def display_moves
@@ -97,19 +101,22 @@ class RPSGame
   def display_winner
     if human.move > computer.move
       puts "#{human.name} won!"
+      @@player_score += 1
     elsif human.move < computer.move
       puts "#{computer.name} won!"
+      @@computer_score += 1
     else
       puts "It's a tie!"
     end
   end
 
   def display_goodbye_message
-    puts "Thanks for playing Rock, Paper, Scissors. Good bye!"
+    puts "Thanks for playing 'Rock, Paper, Scissors' with #{computer.name}, #{human.name}! Good bye!"
   end
 
   def play_again?
     answer = nil
+    puts "The score is #{human.name}: #{@@player_score} - #{computer.name}: #{@@computer_score}"
     loop do
       puts "Would you like to play again? (y/n)"
       answer = gets.chomp
@@ -120,6 +127,10 @@ class RPSGame
     false
   end
 
+  def won?
+    @@player_score >= 2 || @@computer_score >= 2
+  end
+
   def play
     display_welcome_message
     loop do
@@ -127,6 +138,7 @@ class RPSGame
       computer.choose
       display_moves
       display_winner
+      break unless !won?
       break unless play_again?
     end
     display_goodbye_message
