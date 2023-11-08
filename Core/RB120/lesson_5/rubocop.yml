@@ -1,0 +1,26 @@
+$ rubocop tictactoe.rb
+Inspecting 1 file
+C
+
+Offenses:
+
+tictactoe.rb:16:26: C: Space between { and | missing.
+    @squares.keys.select {|key| @squares[key].unmarked? }
+                         ^^
+tictactoe.rb:38:17: C: Space between { and | missing.
+    (1..9).each {|key| @squares[key] = Square.new}
+                ^^
+tictactoe.rb:38:50: C: Space missing inside }.
+    (1..9).each {|key| @squares[key] = Square.new}
+                                                 ^
+tictactoe.rb:41:3: C: Assignment Branch Condition size for draw is too high. [20/18]
+  def draw
+  ^^^
+
+tictactoe.rb:64:1: C: Extra empty line detected at class body end.
+
+tictactoe.rb:109:3: C: Method has too many lines. [15/10]
+  def play
+  ^^^
+
+1 file inspected, 7 offenses detected
