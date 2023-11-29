@@ -1,17 +1,8 @@
-countries_and_capitals = {
-  'France' => 'Paris',
-  'Belgium' => 'Brussels',
-  'Morocco' => 'Rabat',
-  'Barbados' => 'Bridgetown',
-  'Peru' => 'Lima',
-  'Bolivia' => 'La Paz',
-  'Brazil' => 'Brasilia'
-}
+# in temp.rb
+require 'minitest/autorun'
 
-def begins_with_b(string)
-string[0] == 'B'
+class MyFirstTest < Minitest::Test
+  def test_first_test
+    assert true
+  end
 end
-
-p countries_and_capitals.find_all{ |country, capital|
-begins_with_b(country)
-}
