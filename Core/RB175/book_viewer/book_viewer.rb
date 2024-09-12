@@ -1,5 +1,5 @@
 require "sinatra"
-require "sinatra/reloader"
+require "sinatra/reloader" if development?
 require "tilt/erubis"
 
 helpers do
@@ -7,6 +7,10 @@ helpers do
     text.split("\n\n").map do |paragraph|
       "<p>#{paragraph}</p>"
     end.join
+  end
+  
+  def highlight(text, term)
+    text.gsub(term, %(<strong>#{term}</strong>))
   end
 end
   
