@@ -59,7 +59,7 @@ test("without removes only the specified number of arguments", function() {
   var a = _([1, 2, 3, 4, 5, 6]).without(6, 4);
   return a.length === 4;
 });
-test("without retains the elements that aren't remove", function() {
+test("without retains the elements that aren't removed", function() {
   var a = _([1, 2, 3, 4, 5, 6]).without(6, 4);
   return a.indexOf(1) === 0 && a.indexOf(2) === 1 && a.indexOf(3) === 2 && a.indexOf(5) === 3;
 });
