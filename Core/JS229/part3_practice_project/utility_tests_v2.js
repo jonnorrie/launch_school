@@ -187,21 +187,22 @@ test("extend returns an extended object using new object's values", function() {
       old_obj = { foo: "bar" },
       ext_obj = _.extend(old_obj, new_obj),
       crazy_object = _.extend({ foo: "quuz" }, new_obj, old_obj);
-  return ext_obj.foo === "bar" && ext_obj.bar === "baz";
+  return ext_obj.foo === "bar" && ext_obj.bar === "baz"; // extended objects properties match expectations
 });
+
 test("extend modifies the first object passed in rather than creating a new object", function() {
   var new_obj = { bar: "baz" },
       old_obj = { foo: "bar" },
-      ext_obj = _.extend(old_obj, new_obj),
-      crazy_object = _.extend({ foo: "quuz" }, new_obj, old_obj);
-  return new_obj === _.extend(new_obj, {});
+      ext_obj = _.extend(old_obj, new_obj), // adds props from new object to old object
+      crazy_object = _.extend({ foo: "quuz" }, new_obj, old_obj); // adds all props from old object to new, then all props from new to {foo: "quuz" }
+  return new_obj === _.extend(new_obj, {}); // adds props from empty object to new object, which should return new object
 });
 test("extend works with any number of objects", function() {
   var new_obj = { bar: "baz" },
       old_obj = { foo: "bar" },
       ext_obj = _.extend(old_obj, new_obj),
       crazy_object = _.extend({ foo: "quuz" }, new_obj, old_obj);
-  return crazy_object.foo === "bar";
+  return crazy_object.foo === "bar"; // foo is added to new object, then from new object added to returned object, overwriting existing foo prop
 });
 
 test("pick is defined", function() {
