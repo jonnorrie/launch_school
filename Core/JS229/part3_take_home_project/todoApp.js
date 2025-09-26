@@ -74,11 +74,11 @@ let todoList = (function() {
 
 let todoManager = {
 
-  allTodos: function(){
+  getAll: function(){
     return todoList.getList()
   },
 
-  getCompletedTodos: function(){
+  getCompleted: function(){
     let output = []
 
     let list = todoList.getList()
@@ -112,7 +112,6 @@ let todoManager = {
     let list = todoList.getList()
 
     list.forEach(function(todo){
-      console.log(todo.title, todo.completed)
       if(todo.isWithinMonthYear(month, year) && todo.completed === true){
         output.push(todo)
       }
@@ -123,6 +122,11 @@ let todoManager = {
 
 
 }
+
+
+
+
+
 
 // ---------------------------------------------
 // Tests
@@ -164,23 +168,22 @@ todoSet.forEach(function(todoData){
 })
 
 
-//// removing specific item from list
-//console.log(todoList.getList())
-//todoList.deleteTodo("Buy Veggies")
-//console.log("'Buy Veggies' deleted")
-//console.log(todoList.getList())
+// removing specific item from list
+console.log(todoList.getList())
+todoList.deleteTodo("Buy Veggies")
+console.log(todoList.getList()) // displays that 'Buy Veggies' todo is now missing from the list
 
-//// list is private within todoList
-//console.log(todoList.list) // returns undefined
+// list is private within todoList
+console.log(todoList.list) // returns undefined
 
-////// list is only operable through getList function
-//let list = todoList.getList()
-//console.log(list)
-//list[0] = "string"
-//console.log(list) // first object is a string
-//console.log(todoList.getList()) // first object remains unchanged
+// list is only operable through getList function. todoList.getList() returns a copy of the list, not the actual list
+let list = todoList.getList() 
+console.log(list)
+list[0] = "string" // reassigns first element in copied list
+console.log(list) // first object in copied list is a string
+console.log(todoList.getList()) // first object remains unchanged in original list
 
-////// new todos are given a unique id number
+// new todos are given a unique id number
 let todoData5 = {
   title: 'Go to the Gym',
   month: '',
@@ -190,30 +193,29 @@ let todoData5 = {
 todoList.addTodo(todoData5)
 console.log(todoList.getList()) // new data is added to list, with a new and unique id number
 
-//// todos share the `isWithinMonthYear` method
-//let firstTodo = todoList.getList()[0]
-//console.log(firstTodo.hasOwnProperty('isWithinMonthYear')) // returns false
+// todos share the `isWithinMonthYear` method
+let firstTodo = todoList.getList()[0]
+console.log(firstTodo.hasOwnProperty('isWithinMonthYear')) // returns false
 
-////// `isWithinMonthYear` method returns true when month year combination of calling object matches the passed in values
-//console.log(firstTodo)
-//console.log(firstTodo.isWithinMonthYear(1, 2017)) // returns true
-//console.log(firstTodo.isWithinMonthYear(5, 2017)) // returns false
+// `isWithinMonthYear` method returns true when month year combination of calling object matches the passed in values
+console.log(firstTodo.isWithinMonthYear(1, 2017)) // returns true
+console.log(firstTodo.isWithinMonthYear(5, 2017)) // returns false
 
-//let secondTodo = todoList.getList()[1]
-//console.log(secondTodo.isWithinMonthYear(1, 2017)) // returns false
-//console.log(secondTodo.isWithinMonthYear('', 2017)) // returns true
+let secondTodo = todoList.getList()[1]
+console.log(secondTodo.isWithinMonthYear(1, 2017)) // returns false
+console.log(secondTodo.isWithinMonthYear('', 2017)) // returns true
 
-//// updates existing properties of a specific todo object
+// updates existing properties of a specific todo object
 todoList.updateProperty('Buy Milk', 'month', 2)
 console.log(todoList.getList()[0]) // displays 'Buy Milk' todo object with month value as 2
 
-////// returns a specified todo object based on its `id` property
-//console.log(todoList.getTodoById(2)) // returns todo list with id 2
+// returns a specified todo object based on its `id` property
+console.log(todoList.getTodoById(2)) // returns todo list with id 2
 
-////// returns all completed todo objects
-//todoList.completeTodo('Buy Milk')
-//todoList.completeTodo('Buy Apples')
-//console.log(todoManager.getCompletedTodos()) // returns array of todos with 'Buy Milk' and 'Buy Apples' titles
+// returns all completed todo objects
+todoList.completeTodo('Buy Milk')
+todoList.completeTodo('Buy Apples')
+console.log(todoManager.getCompleted()) // returns array of todos with 'Buy Milk' and 'Buy Apples' titles
 
 // returns all todo objects within a given month-year combination
 let todoData6 = {
@@ -228,4 +230,4 @@ console.log(todoManager.getWithinMonthYear(2, 2017)) // returns an array with 'B
 // returns all completed todo objects within a given month-year combination
 todoList.completeTodo('Study JavaScript')
 console.log(todoList.getList())
-console.log(todoManager.getCompletedWithinMonthYear(2, 2017))
+console.log(todoManager.getCompletedWithinMonthYear(2, 2017)) // returns array of only 'Study JavaScript' todo object
