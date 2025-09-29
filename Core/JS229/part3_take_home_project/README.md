@@ -60,5 +60,3 @@ The `todoManager`:
 - obtain an array of todo objects with specific `month` and `year` properties (`todoManager.getWithinMonthYear(month, year)`)
 
 - obtain an array of todo objects with specific `month` and `year` properties AND that have a `completed` property value of `true` (`todoManager.getCompletedWithinMonthYear(month, year)`)
-
-
